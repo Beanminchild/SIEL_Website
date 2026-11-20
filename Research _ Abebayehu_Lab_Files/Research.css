@@ -602,3 +602,14 @@
     animation: none;
   }
 }
+.siel-footer {
+      padding-block: 22px;
+      border-top: 1px solid var(--research-border);
+      color: var(--research-muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+.siel-container {
+      width: min(1120px, calc(100% - 32px));
+      margin-inline: auto;
+    }
