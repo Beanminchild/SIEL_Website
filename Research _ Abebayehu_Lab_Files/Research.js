@@ -1,22 +1,39 @@
-(() => {
+function setupResearchPage() {
   const page = document.querySelector(".siel-research");
   if (!page) return;
 
-  const items = page.querySelectorAll("[data-reveal]");
-  if (!items.length || !("IntersectionObserver" in window)) return;
+  const header = page.querySelector(".siel-header");
+  const toggles = page.querySelectorAll(".siel-nav-toggle");
+  const navigation = header?.querySelector(".siel-nav-links");
 
-  page.classList.add("js-reveal-ready");
+  if (!header || !toggles.length || !navigation) return;
 
-  const observer = new IntersectionObserver(
-    (entries, currentObserver) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        currentObserver.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.12 }
-  );
+  page.classList.add("js-ready");
+  header.classList.add("js-ready");
 
-  items.forEach((item) => observer.observe(item));
-})();
+  const setMenuOpen = (isOpen) => {
+    toggles.forEach((toggle) => {
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      toggle.textContent = isOpen ? "Close" : "Menu";
+    });
+    navigation.classList.toggle("is-open", isOpen);
+  };
+
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      setMenuOpen(toggle.getAttribute("aria-expanded") !== "true");
+    });
+  });
+
+  navigation.addEventListener("click", (event) => {
+    if (event.target instanceof Element && event.target.closest("a")) {
+      setMenuOpen(false);
+    }
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", setupResearchPage);
+} else {
+  setupResearchPage();
+}

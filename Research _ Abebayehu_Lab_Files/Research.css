@@ -20,6 +20,120 @@
   overflow-x: hidden;
 }
 
+
+/* Navigation */
+.siel-research .siel-header {
+  position: relative;
+  z-index: 5;
+  border-bottom: 1px solid var(--research-border);
+  background: rgba(10, 14, 17, 0.88);
+}
+
+.siel-research .siel-header-inner {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.siel-research .siel-brand {
+  color: var(--research-text) !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.siel-research .siel-nav-toggle {
+  display: none;
+  border: 1px solid var(--research-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--research-text);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+
+.siel-research .siel-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.siel-research .siel-nav-links a {
+  color: var(--research-text) !important;
+  font-size: 0.95rem;
+  text-decoration: none;
+}
+
+.siel-research .siel-nav-links a:hover {
+  color: var(--research-accent) !important;
+}
+
+@media (max-width: 720px) {
+  .siel-research .siel-header-inner {
+    min-height: 60px;
+  }
+
+  .siel-research .siel-header.js-ready .siel-nav-toggle {
+    display: inline-block;
+  }
+
+  .siel-research.js-ready .siel-nav-toggle--floating {
+    display: inline-block;
+    position: fixed;
+    z-index: 30;
+    left: 50%;
+    bottom: calc(5px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    border: 1px solid var(--research-border);
+    border-radius: 999px;
+    background: #151a1e;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    opacity: 0.92;
+    backdrop-filter: blur(10px) 
+  }
+
+  .siel-research .siel-header.js-ready .siel-nav-links {
+    position: fixed;
+    top: auto;
+    right: auto;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    left: 50%;
+    z-index: 29;
+    display: none;
+    width: min(280px, calc(100vw - 32px));
+    max-height: 60vh;
+    overflow-y: auto;
+    transform: translateX(-50%);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 8px 16px;
+    border: 1px solid var(--research-border);
+    border-radius: 12px;
+    background: #151a1e;
+  }
+
+  .siel-research .siel-header.js-ready .siel-nav-links.is-open {
+    display: flex;
+  }
+
+  .siel-research .siel-nav-links li + li {
+    border-top: 1px solid var(--research-border);
+  }
+
+  .siel-research .siel-nav-links a {
+    display: block;
+    padding: 11px 0;
+  }
+}
+
 .siel-research *,
 .siel-research *::before,
 .siel-research *::after {

@@ -1,0 +1,8 @@
+html,
+body,
+.wp-site-blocks,
+#page,
+.site,
+.site-content {
+  background-color: #000 !important;
+}
